@@ -133,4 +133,14 @@ function createCoin(nominal) {
   coin.onclick = function() {
     this.remove(); //Удаляет элемент
   }
+
+  //Анимируем падение монеты
+  // setTimeout(() => {
+  //   coin.style.opacity = "100%";
+  //   coin.style.transform = "translateY(0)";
+  // }, 30);
+  requestAnimationFrame(() => { //срабатывает перед рэндером
+    coin.style.opacity = "100%";
+    coin.style.transform = "translateY(0)";
+  })  
 }

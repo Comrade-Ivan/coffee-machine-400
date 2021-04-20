@@ -92,4 +92,7 @@
 	cursor: pointer;
 	display: inline-block;
 	position: absolute;
+	transform: translateY(-50%);
+	opacity: 0;
+	transition: transform 2s ease, opacity 2s ease;
 }
