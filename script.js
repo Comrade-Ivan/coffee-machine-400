@@ -66,3 +66,71 @@ function takeCoffee() {
 
   state = "idle";
 }
+
+const changeBtn = document.getElementById("change-btn");
+changeBtn.onclick = takeChange;
+
+function takeChange() {
+  if (balance.value >= 10) {
+    balance.value -= 10;
+    createCoin("10");
+    setTimeout(() => { //Откладываем выдачу следующей монетки
+      takeChange();
+    }, 300);
+  } else if (balance.value >= 5) {
+    balance.value -= 5;
+    createCoin("5");
+    setTimeout(() => {
+      takeChange();
+    }, 300);
+  } else if (balance.value >= 2) {
+    balance.value -= 2;
+    createCoin("2");
+    setTimeout(() => {
+      takeChange();
+    }, 300);
+  } else if (balance.value >= 1) {
+    balance.value -= 1;
+    createCoin("1");
+    setTimeout(() => {
+      takeChange();
+    }, 300);
+  }
+}
+
+function createCoin(nominal) {
+
+  let coinSrc = "";
+  switch (nominal) {
+    case "10":
+      coinSrc = "./img/10rub.png";
+      break;
+    case "5":
+      coinSrc = "./img/5rub.png";
+      break;
+    case "2":
+      coinSrc = "./img/2rub.png";
+      break;
+    case "1":
+      coinSrc = "./img/1rub.png";
+      break;
+    default:
+      console.error("Такой монеты не существует");
+  }
+
+  const changeContainer = document.getElementById("change-container");
+  const changeContainerCoords = changeContainer.getBoundingClientRect();
+
+  const coin = document.createElement("img");
+  coin.setAttribute("src", coinSrc);
+  coin.className = "coin";
+
+  coin.style.top = Math.floor(Math.random() * (changeContainerCoords.height - 52)) + "px";
+  coin.style.left = Math.floor(Math.random() * (changeContainerCoords.width - 52)) + "px";
+
+  changeContainer.append(coin);
+
+  coin.onclick = function() {
+    this.remove(); //Удаляет элемент
+  }
+}

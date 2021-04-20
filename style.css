@@ -84,3 +84,12 @@
 .progress-bar {
 	transition: none;
 }
+
+.coin {
+	width: 50px;
+	height: 50px;
+	user-select: none;
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+}
